@@ -45,7 +45,17 @@ def build_index(records, key):
     Example: records with ids A, B, A  ->  ({"A": ..., "B": ...}, ["A"])
     Target: expected O(n) time.
     """
-    raise NotImplementedError("Part 1: build_index")
+    index = {}
+    duplicates = []
+
+    for r in records:
+        if r[key] in index:
+            duplicates.append(r[key])
+        else:
+            index[r[key]] = r
+
+    return (index, duplicates)
+    # raise NotImplementedError("Part 1: build_index")
 
 
 # =====================================================================
@@ -61,7 +71,45 @@ def merge_sort(items, key=lambda x: x):
               (when the keys are equal, take from the LEFT half -> stable)
     Target: O(n log n).
     """
-    raise NotImplementedError("Part 2: merge_sort")
+
+    # if len(items) == 0 or len(items) == 1:
+    if len(items) <= 1:
+        # must be sorted
+        # return
+        # cant be return blank because its our base case
+        # everytime list is less than 1 returns empty..
+        return list(items)
+        # return a copy of it
+    
+    half = len(items) // 2
+    left = merge_sort(items[:half], key)
+    right = merge_sort(items[half:], key)
+    #  since we are sorting dict values. must specify
+    #  what the key will be since dict cant inheriently
+    #  be compared 
+
+    result = []
+    left_pointer = 0 
+    right_pointer =0
+
+    # smallest 1st
+    while left_pointer < len(left) and right_pointer < len(right): 
+        if key(left[left_pointer]) <= key(right[right_pointer]):
+            result.append(left[left_pointer])
+            left_pointer += 1
+        else:
+            result.append(right[right_pointer])
+            right_pointer += 1
+
+    result.extend(left[left_pointer:])
+    result.extend(right[right_pointer:])
+    # if list is sorted at all.. may fail..
+    # want to extend the rest of the already 
+    # sorted list into result
+
+    return result
+    
+    # raise NotImplementedError("Part 2: merge_sort")
 
 
 def lower_bound(sorted_items, target, key=lambda x: x):
@@ -73,7 +121,21 @@ def lower_bound(sorted_items, target, key=lambda x: x):
     Example: [1, 3, 3, 5, 9] with target 3 -> 1,  target 4 -> 3,  target 10 -> 5
     Target: O(log n).  Keep two pointers lo, hi and halve the range each step.
     """
-    raise NotImplementedError("Part 2: lower_bound")
+
+    left = 0
+    right = len(sorted_items)
+
+    while left < right:
+        half = (left + right) //2 
+        if key(sorted_items[half]) >= target:
+            right = half
+        else: 
+            left = half + 1
+    return left
+
+
+
+    # raise NotImplementedError("Part 2: lower_bound")
 
 
 # =====================================================================

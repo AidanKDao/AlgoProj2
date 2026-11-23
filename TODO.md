@@ -3,7 +3,7 @@
 Check items off with `[x]` as you go. Due dates are on Canvas. Rules and commands are in `CLAUDE.md`.
 
 ## Phase 0: Setup (first 2 days, both)
-- [ ] Kien: install requirements and run `streamlit run app.py` in `CPSC335_Final_Project/BloodLink/`
+- [ ] Kien: install requirements and run `streamlit run app.py` in `BloodLink/`
 - [ ] Bryan: same as above
 - [ ] Screenshot of the app running, submit "Project Choice & Setup Check" on Canvas (5 pts)
 - [ ] Create public GitHub repo (e.g. `bloodlink-cpsc335`), add both partners
@@ -42,7 +42,7 @@ Do Part 2 (merge sort) and Part 3 (MinHeap) **first**. Bryan's greedy and Kruska
 - [ ] README: short description + screenshot; live link in the repo "About" box
 
 ## Phase 3: Report (last 2 days, both)
-Fill `CPSC335_Final_Project/BloodLink/REPORT_TEMPLATE.md`, export as `Report_BloodLink_<LastName1>_<LastName2>.pdf`.
+Fill `BloodLink/REPORT_TEMPLATE.md`, export as `Report_BloodLink_<LastName1>_<LastName2>.pdf`.
 - [ ] 1. Team, project, why we chose BloodLink
 - [ ] 2. Live app + GitHub links
 - [ ] 3. `check_project.py` screenshot

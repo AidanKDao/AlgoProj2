@@ -6,7 +6,7 @@ Instructions for any AI assistant (Claude Code or similar) working in this repo.
 
 - Course: CPSC 335 Algorithm Engineering, CSUF (Dr. Syed Hassan Shah). Worth 20 points.
 - Project: **BloodLink**, a regional blood-unit sharing planner built in Streamlit.
-- Project folder: `CPSC335_Final_Project/BloodLink/`
+- Project folder: `BloodLink/`
 - Full requirements: `Final_Project_Instructions.pdf` (repo root).
 - Task list: `TODO.md` (repo root).
 - AI log: `AI_LOG.md` (repo root). **Required, see below.**
@@ -50,7 +50,7 @@ Add the newest entry at the bottom. If you only answered a question and changed 
 - Only `core.py` is required. `app.py` may be restyled, but every tab must keep working. Do not edit `theme.py`, `glue.py`, `main.py`, `check_project.py`, `tests/`, or `data/` (the data may not be changed).
 - Code quality is graded: clear names, short comments.
 
-## Commands (run from `CPSC335_Final_Project/BloodLink/`)
+## Commands (run from `BloodLink/`)
 
 ```
 pip install -r requirements.txt
