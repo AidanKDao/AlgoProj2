@@ -160,18 +160,98 @@ class MinHeap:
 
     def push(self, priority, item):
         """Add an item. Append at the end, then 'bubble up'. O(log n)."""
-        raise NotImplementedError("Part 3: MinHeap.push")
+
+        # pushes into the tree
+        self._a.append( (priority, self._count, item) )
+        self._count += 1
+
+        # balances the tree
+        # parent equation: (i - 1) // 2 
+        # children eq: 2*i + 1 (<- left) and 2*i + 2 (<- right)
+        # compare (priority, counter) 
+        i = len(self._a) - 1
+        while i > 0:
+            parent_i = (i-1) // 2
+            child_val = (self._a[i][0], self._a[i][1])
+            parent_val = (self._a[parent_i][0], self._a[parent_i][1])
+            # ex. child_val = (1, 5) parent_val = (1, 2)
+            #  parent will always have alower count then child btw
+            if child_val < parent_val:
+                temp = self._a[i]
+                self._a[i] = self._a[parent_i]
+                self._a[parent_i] = temp
+                i = parent_i
+            else:
+                break
 
     def peek(self):
         """Return (priority, item) with the smallest priority without removing it.
         Raise IndexError if the heap is empty. O(1)."""
-        raise NotImplementedError("Part 3: MinHeap.peek")
+        if len(self._a) > 0:
+            return (self._a[0][0], self._a[0][2])
+        else:
+            raise IndexError("Peeking into empty heap")
 
     def pop(self):
         """Remove and return (priority, item) with the smallest priority.
         Move the last entry to the top, then 'bubble down'.
         Raise IndexError if the heap is empty. O(log n)."""
-        raise NotImplementedError("Part 3: MinHeap.pop")
+
+         # children eq: 2*i + 1 (<- left) and 2*i + 2 (<- right)
+
+        if len(self._a) == 0:
+            raise IndexError("Popping empty heap")
+
+        popped_value = self._a[0]
+        # self._a[0] = self._a[len(self._a) - 1]    
+        # del self._a[len(self._a) - 1]
+        last = self._a.pop()
+        
+
+        
+        # possibility tree was only a len of 1 when popped
+        if len(self._a) > 0:
+            self._a[0] = last
+            i = 0
+            while True:
+                left_i  = 2*i + 1
+                right_i = 2*i + 2
+                smallest_i = i
+
+                # every parent must be <= its children**
+                # if left child is real and is less than parent 
+                # try:
+                # if self._a[left_i] is not None and (self._a[left_i][0], 
+                #     self._a[left_i][1]) < (self._a[smallest_i][0], 
+                #                            self._a[smallest_i][1]):
+                #     smallest_i = left_i
+                # except:
+
+                # ^^weird. instead just check is i is within length of tree
+                if left_i < len(self._a) and (self._a[left_i][0], 
+                    self._a[left_i][1]) < (self._a[smallest_i][0], 
+                                           self._a[smallest_i][1]):
+                    smallest_i = left_i
+
+                # if left fails: if right child is real and less than parent
+                if right_i < len(self._a) and (self._a[right_i][0], 
+                    self._a[right_i][1]) < (self._a[smallest_i][0], 
+                                           self._a[smallest_i][1]):                
+                    smallest_i = right_i
+                # if both failed: does smallest_i = our current i?
+                # if so break. both sides are smaller than parent
+                if smallest_i == i:
+                    break
+
+                # isnt?: keep going deeper and swap parent and child
+                temp = self._a[i]
+                self._a[i] = self._a[smallest_i]
+                self._a[smallest_i] = temp
+                i = smallest_i
+
+        return (popped_value[0], popped_value[2])
+        
+        # raise NotImplementedError("Part 3: MinHeap.pop")
 
 
 # =====================================================================

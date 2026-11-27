@@ -44,3 +44,71 @@ Every AI session that writes code, changes files, or gives substantial help adds
   - Reviewed Kien's code: pointed out the missing `return` and the `left = half` infinite loop
 - Written by AI vs. student: Kien wrote all of lower_bound; AI only explained and reviewed
 - Tests: check_project.py 2 of 8 pass (Parts 1, 2), rules OK; lower_bound matched expected results on 500 random cases
+
+## 2026-11-26 - Kien
+- Requested by: Kien
+- AI tool / model: Claude Code, Opus 5.5
+- Parts / files touched: Part 3 `MinHeap` in core.py (explained only, AI made no edits)
+- What was done:
+  - Explained where MinHeap is used (Part 3 tab, app pools, Bryan's dijkstra) and what check_project.py tests
+  - Explained the heap array layout, the (priority, counter, item) entry, bubble up, bubble down, and the empty-heap IndexError
+  - Gave pseudocode-level steps and common pitfalls; no finished code
+- Written by AI vs. student: no code written by AI; Kien to write push, peek, pop
+- Tests: not run (Part 3 not written yet)
+
+## 2026-11-26 - Kien
+- Requested by: Kien
+- AI tool / model: Claude Code, Opus 5.5
+- Parts / files touched: Part 3 `MinHeap.push` in core.py (explained only, AI made no edits)
+- What was done: walked through push with a traced example and a fill-in-the-blanks outline
+- Written by AI vs. student: no code written by AI; Kien to write push
+- Tests: not run
+
+## 2026-11-26 - Kien
+- Requested by: Kien
+- AI tool / model: Claude Code, Opus 5.5
+- Parts / files touched: Part 3 `MinHeap.push` and `MinHeap.peek` in core.py (reviewed only, AI made no edits)
+- What was done:
+  - Reviewed push: pointed out `append` given 3 arguments (needs one tuple), `i = len(self._a)` one past the end, comment typo `2*1`, and that a tie never moves the new entry up (it has the biggest counter)
+  - Reviewed peek: empty check is right, but it returns the whole (priority, counter, item) entry instead of (priority, item)
+- Written by AI vs. student: Kien wrote all of push and peek; AI only reviewed
+- Tests: not run (pop not written yet, push bugs still open)
+
+## 2026-11-26 - Kien
+- Requested by: Kien
+- AI tool / model: Claude Code, Opus 5.5
+- Parts / files touched: Part 3 `MinHeap.push` and `MinHeap.peek` in core.py (re-reviewed only, AI made no edits)
+- What was done:
+  - push unchanged in the saved file: `append` with 3 args and `i = len(self._a)` still open
+  - peek now returns `self._a[0][1][3]`: explained that chained `[ ][ ]` digs into the counter (an int) and crashes, that tuples start at index 0, and that it must build a new (priority, item) tuple
+- Written by AI vs. student: Kien wrote all of push and peek; AI only reviewed
+- Tests: not run (pop not finished)
+
+## 2026-11-26 - Kien
+- Requested by: Kien
+- AI tool / model: Claude Code, Opus 5.5
+- Parts / files touched: Part 3 `MinHeap.push` and `MinHeap.peek` in core.py (re-reviewed only, AI made no edits)
+- What was done:
+  - Confirmed Kien fixed push (`append` of one tuple, `i = len - 1`) and peek (returns `(priority, item)`)
+  - Pointed out unfinished `pop` (`self._a[0] =` at line 200) is a SyntaxError that stops core.py from importing
+- Written by AI vs. student: Kien wrote all of push and peek; AI only reviewed and tested
+- Tests: push/peek tested on a scratch copy of the class: heap rule holds after 200 random pushes, peek gives min, tuple ties OK, dict items OK, empty peek raises IndexError. check_project.py not run (core.py does not import until pop is fixed)
+
+## 2026-11-26 - Kien
+- Requested by: Kien
+- AI tool / model: Claude Code, Opus 5.5
+- Parts / files touched: Part 3 `MinHeap.pop` in core.py (explained only, AI made no edits)
+- What was done: walked through pop step by step (empty check, save top, move last to top, bubble down with child bounds and picking the smaller child) with a traced example and a fill-in-the-blanks outline
+- Written by AI vs. student: no code written by AI; Kien to write pop (started with save-top and return lines)
+- Tests: not run (pop unfinished)
+
+## 2026-11-26 - Kien
+- Requested by: Kien
+- AI tool / model: Claude Code, Opus 5.5
+- Parts / files touched: Part 3 `MinHeap.pop` in core.py (reviewed only, AI made no edits)
+- What was done:
+  - Reviewed Kien's pop: logic correct (empty check, one-entry case, bounds checks, right child compared to smallest, swap and descend)
+  - Drew ASCII trees tracing a pop step by step
+  - Suggested cleanup: remove commented-out old attempts and `raise` line, fix the "both sides are smaller" comment
+- Written by AI vs. student: Kien wrote all of pop; AI only reviewed and drew diagrams
+- Tests: check_project.py 3 of 8 pass (Parts 1, 2, 3), rules OK; extra edge cases OK (pop of single entry leaves len 0, equal priorities pop in push order, dict items)
